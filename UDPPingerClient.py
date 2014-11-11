@@ -1,7 +1,6 @@
 import time
-from socket import *
-
 from time import strftime
+from socket import *
 
 #Set serverName and Port
 serverName = "localhost"
@@ -23,12 +22,16 @@ clientSocket.settimeout(1)
 
 ping = 0
 
+#loop 10 times
 while (ping < 10):
 	ping = ping + 1
+	#start timer
 	start = time.clock()
+	#set message format
 	message = "Ping " + str(ping) + " " + str(strftime("%H:%M:%S"))
 	clientSocket.sendto(message, (serverName, serverPort))
 	try:
+		#packet success print message with time
 		message, serverAddress = clientSocket.recvfrom(2048)
 		print message
 
@@ -39,11 +42,13 @@ while (ping < 10):
 		if elapsed > max_trip or max_trip == 0.0:
 			max_trip = elapsed
 		average_trip = average_trip + elapsed
-	except:
+	except: 
+		#packet lost, print error.
 		packet_lost = packet_lost + 1.0
 		print "Request timed out"
 	total_packets = total_packets + 1.0
 	print ''
 clientSocket.close()
-print "Round Trip Time: max-> " + str(max_trip) + " min-> " + str(min_trip) + " average-> " + str(average_trip/total_packets)
+#print out min, max, average, and packet loss percentage (extra assignment)
+print "Round Trip Time: max-> " + str(max_trip) + " min-> " + str(min_trip) + " average-> " + str(average_trip / total_packets)
 print "Packet Loss Percentage: " + str(packet_lost/total_packets * 100) + "%"
