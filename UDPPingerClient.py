@@ -1,3 +1,7 @@
+#Chase Hoselle
+#CSC 4501
+#Prog2
+
 import time
 from time import strftime
 from socket import *
