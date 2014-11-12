@@ -21,12 +21,11 @@ total_packets = 0.0
 clientSocket.settimeout(1)
 
 ping = 0
-
 #loop 10 times
 while (ping < 10):
 	ping = ping + 1
 	#start timer
-	start = time.clock()
+	start_timer = time.clock()
 	#set message format
 	message = "Ping " + str(ping) + " " + str(strftime("%H:%M:%S"))
 	clientSocket.sendto(message, (serverName, serverPort))
@@ -35,13 +34,13 @@ while (ping < 10):
 		message, serverAddress = clientSocket.recvfrom(2048)
 		print message
 
-		elapsed = ((time.clock() - start) * 1000)
-		print elapsed, "ms round trip"
-		if elapsed < min_trip or min_trip == 0.0:
-			min_trip = elapsed
-		if elapsed > max_trip or max_trip == 0.0:
-			max_trip = elapsed
-		average_trip = average_trip + elapsed
+		time_elapsed = ((time.clock() - start_timer) * 1000)
+		print time_elapsed, "ms round trip"
+		if time_elapsed < min_trip or min_trip == 0.0:
+			min_trip = time_elapsed
+		if time_elapsed > max_trip or max_trip == 0.0:
+			max_trip = time_elapsed
+		average_trip = average_trip + time_elapsed
 	except: 
 		#packet lost, print error.
 		packet_lost = packet_lost + 1.0
