@@ -4,7 +4,7 @@ from socket import *
 
 #Set serverName and Port
 serverName = "localhost"
-serverPort = 12000
+serverPort = 50110
 
 #Bind socket
 clientSocket = socket(AF_INET, SOCK_DGRAM)
