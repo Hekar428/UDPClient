@@ -1,6 +1,6 @@
 #Chase Hoselle
 #CSC 4501
-#Prog2
+#UDPPingerClient
 
 import time
 from time import strftime
@@ -10,7 +10,7 @@ from socket import *
 serverName = "localhost"
 serverPort = 50110
 
-#Bind socket
+#Bind UDP socket
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 
 #Some variables for finding min, max, average and packet loss rate
